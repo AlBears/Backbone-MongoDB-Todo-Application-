@@ -5,7 +5,7 @@ var TodoItemView = Backbone.View.extend({
 			throw new Error("Model is not specified");
 	},
 	render: function(){
-		this.$el.html(this.model.get("title"));
+		this.$el.html(this.model.escape("title"));
 		return this;
 	}
 });
