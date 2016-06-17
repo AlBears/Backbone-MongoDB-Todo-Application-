@@ -14,7 +14,6 @@ var TodoItemView = Backbone.View.extend({
 	},
 
 	onClickUpdate: function(){
-		console.log('cotcha');
 		this.model.set('title', $('.amend').val());
 		this.model.save();
 
@@ -22,7 +21,9 @@ var TodoItemView = Backbone.View.extend({
 
 	onClickEdit: function(todoItem){
 		var title = this.model.get('title');
-		this.$el.html('<input class="amend" type="text" value="' + title +'"><button class="update">Update</button>');
+		var html = '<input class="amend" type="text" value="' + title;
+		html += '"><button class="update">Update</button>';
+		this.$el.html(html);
 		
 	},
 
@@ -37,11 +38,12 @@ var TodoItemView = Backbone.View.extend({
 
 	render: function(){
 		this.$el.attr("id", this.model.id)
-
 		this.$el.toggleClass('completed', this.model.get("completed"));
 
-		var checked = this.model.get("completed") ? "checked" : "";
-		this.$el.html("<input class='toggle' type='checkbox'"+checked+"></input> "+this.model.escape("title") + " <button class='edit'>Edit</button> <button class='delete'>Delete</button>");
+		var template = $('#todoItemTemplate').html();
+		var html = Mustache.render(template, this.model.toJSON());
+		this.$el.html(html);
+
 		return this;
 	}
 });
