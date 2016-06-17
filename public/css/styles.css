@@ -27,6 +27,7 @@ body, p { font-size: 24px; }
 }
 
 #todoItems > li > .delete, .edit, .update{
+	width: 60px;
 	float: right;
 	font-size: 14px;
 	border: 0;
