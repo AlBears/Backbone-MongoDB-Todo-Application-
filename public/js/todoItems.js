@@ -1,3 +1,6 @@
 var TodoItems = Backbone.Collection.extend({
-	model: TodoItem
+	model: TodoItem,
+
+	url: 'http://localhost:3000/api/todoitems'
+	
 });
